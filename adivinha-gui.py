@@ -19,7 +19,7 @@ class Jogo:
         self.title = Label(self.principal, text="JOGO DO ADIVINHA", font=self.fontTitle)
         self.title.pack()
 
-        self.textNumberTry = Label(self.body, text="Digite um número: ", font=self.fontText)
+        self.textNumberTry = Label(self.body, text="Adivinhe o número entre 0 e 10: ", font=self.fontText)
         self.textNumberTry.pack(side=LEFT)
 
         self.numberTry = Entry(self.body, width=5, font=self.fontText)
@@ -35,16 +35,11 @@ class Jogo:
     def script(self, master=None):
         numero = str(randint(0,10))
         chute = self.numberTry.get()
-        tentativas = 0
-        loop = True
-        while loop == True:
-            if chute != numero:
-                self.result["text"] = 'Você errou, mudamos o número'
-                tentativas = tentativas + 1
-                numero = str(randint(0,10))
-            else:    
-                self.result["text"] = 'Você acertou depois de ' + str(tentativas) + ' tentativas!'
-                loop = False
+
+        if chute != numero:
+            self.result["text"] = 'Você errou e mudamos o número. Tente novamente!'
+        else:    
+            self.result["text"] = 'Você acertou!'
 
 root = Tk()
 Jogo(root)
